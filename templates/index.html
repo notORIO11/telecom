@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Support Request Portal</title>
+
+  <link href="{{ url_for('static', filename='assets/img/favicon.png') }}" rel="icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets/vendor/aos/aos.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets/css/main.css') }}" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #000;
+      color: #ff4d4d;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    #form-section {
+      background-color: #111;
+      color: #ff4d4d;
+    }
+
+    .form-label,
+    h3,
+    label {
+      color: #ff4d4d;
+    }
+
+    .form-control,
+    textarea {
+      background-color: #222;
+      color: white;
+      border: 1px solid #444;
+    }
+
+    footer {
+      text-align: center;
+      color: #999;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* Loading overlay */
+    #loadingOverlay {
+      display: none;  /* hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      color: white;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+
+
+    #loadingOverlay h2 {
+      color: #fff !important;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .overlay-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+
+
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+    }
+  </style>
+</head>
+
+<body class="index-page">
+  <!-- Loading Screen -->
+  <div id="loadingOverlay">
+    <div class="overlay-content">
+      <h2>Please wait while we process your request...</h2>
+      <div class="spinner-border text-light mt-3" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between"></div>
+  </header>
+
+  <main class="main">
+    <!-- Hero Section -->
+    <section id="hero" class="hero section" style="position: relative; height: 100vh; overflow: hidden; padding: 0;">
+      <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+        <source src="{{ url_for('static', filename='assets/video/hero.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="container text-center" style="position: relative; z-index: 2; color: white;" data-aos="fade-up" data-aos-delay="100">
+        <h2 class="text-light">Telecom Support Portal</h2>
+        <p class="text-light">Describe your issue and we'll direct you to the best solution</p>
+        <a href="#form-section" class="btn btn-primary mt-3">Start</a>
+      </div>
+      <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); z-index:1;"></div>
+    </section>
+
+    <!-- Request Form Section -->
+    <section id="form-section" class="section py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <form id="supportForm" action="{{ url_for('index') }}" method="POST">
+              <h3 class="mb-4 text-center">Describe Your Problem</h3>
+              <div class="mb-3">
+                <label for="message" class="form-label">Write your issue here</label>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Example: شريحتي ضاعت ومش لاقيها..." required></textarea>
+              </div>
+              <div class="text-center mt-4">
+                <button type="submit" class="btn btn-outline-light">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © Mahmoud Elgendy 2025. All rights reserved.
+  </footer>
+
+  <!-- JS -->
+  <script>
+    document.getElementById("supportForm").addEventListener("submit", function () {
+      const overlay = document.getElementById("loadingOverlay");
+      overlay.style.display = "flex";
+    });
+
+  </script>
+
+  <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+</body>
+</html>
